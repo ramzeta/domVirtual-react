@@ -1,7 +1,7 @@
 /** @jsx ramidom */
 
 import "./styles.css";
-
+// desestructuramos los argumentos para tratarlos como array
 function ramidom(type, props, ...args) {
   const children = [].concat(...args);
   return {
@@ -11,12 +11,19 @@ function ramidom(type, props, ...args) {
   };
 }
 
-const title = <h1>Hola Mundo</h1>;
+const title = <h1 className="title">Hola Mundo</h1>;
 
 function render(node) {
   //creando el elemento en el DOM
   const element = document.createElement(node.type);
-  element.appendChild(document.createTextNode(node.type));
+
+  if (node.props) {
+    if (node.props.className) {
+      element.setAttribute("class", node.props.className);
+    }
+  }
+
+  element.appendChild(document.createTextNode(node.children));
   return element;
 }
 
