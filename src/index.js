@@ -11,21 +11,29 @@ function ramidom(type, props, ...args) {
   };
 }
 
-const title = <h1 className="title">Hola Mundo</h1>;
+const title = (
+  <h1 className="title" styles="text-decoration: underline">
+    Hola Mundo
+  </h1>
+);
 
 function render(node) {
   //creando el elemento en el DOM
   const element = document.createElement(node.type);
-
   if (node.props) {
-    if (node.props.className) {
-      element.setAttribute("class", node.props.className);
-    }
+    // applyClass(element, node);
+    Object.keys(node.props).map((key) => {
+      element.setAttribute(key, node.props[key]);
+    });
   }
-
   element.appendChild(document.createTextNode(node.children));
   return element;
 }
 
+// function applyClass(element, node) {
+//   if (node.props.className) {
+//     element.setAttribute("class", node.props.className);
+//   }
+// }
 document.body.appendChild(render(title));
 console.log(title);
