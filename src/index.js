@@ -12,7 +12,7 @@ function ramidom(type, props, ...args) {
 }
 
 const title = (
-  <h1 className="title" styles="text-decoration: underline">
+  <h1 class="title" style="text-decoration: underline">
     Hola Mundo
   </h1>
 );
